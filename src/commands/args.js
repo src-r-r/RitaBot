@@ -22,6 +22,7 @@ const cmdDonate = require("./utility_commands/donate");
 const cmdMisc = require("./info_commands/misc");
 const cmdSettings = require("./settings_commands/settings");
 const cmdTranslateLast = require("./translation_commands/translate.last");
+const cmdUpdateAuto = require("./translation_commands/update.auto");
 const cmdTranslateThis = require("./translation_commands/translate.this");
 const cmdTranslateAuto = require("./translation_commands/translate.auto");
 const cmdTranslateStop = require("./translation_commands/translate.stop");
@@ -318,6 +319,10 @@ module.exports = function run (data)
 
          }
 
+         if (data.newMessage) {
+            output.main = "update"
+         }
+
          // -----------------------
          // Log command data (dev)
          // -----------------------
@@ -332,6 +337,7 @@ module.exports = function run (data)
          // ---------------
 
          const cmdMap = {
+            "update": cmdUpdateAuto,
             "auto": cmdTranslateAuto,
             "ban": cmdMod.ban,
             "bot2bot": cmdBot2bot,

@@ -702,6 +702,10 @@ module.exports = function run (data)
 
    const before = Date.now();
 
+   // console.log(`send data to channel`);
+   // console.log(data);
+   // console.log('-- end srcrr');
+
    global.messageData = data.message;
    // ----------------------------
    // Regex Statments for Emoji's

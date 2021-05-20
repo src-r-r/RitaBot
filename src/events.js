@@ -130,9 +130,17 @@ exports.listen = function listen (client)
             );
 
          }
-
       }
    );
+
+   client.on("messageUpdate", (oldMessage, newMessage) => {
+      if (oldMessage.id !== newMessage.id) {
+         return null;
+      }
+      console.log(`!!!! srcrr messageUpdate: ${newMessage}`);
+      console.log(newMessage.type);
+      messageHandler(config, oldMessage, newMessage);
+   });
 
    // -----------------
    // Recieved Message

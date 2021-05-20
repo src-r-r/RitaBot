@@ -18,7 +18,8 @@ exports.server_obj = server_obj;
 // ----------------------
 
 console.log("DEBUG: Pre Stage Database Auth Process");
-const db = process.env.DATABASE_URL.endsWith(".db") ?
+const dbUrl = process.env.DATABASE_URL.replace("%22", "");
+const db = dbUrl.endsWith(".db") ?
    new Sequelize({
       "dialect": "sqlite",
       "dialectOptions": {
@@ -27,10 +28,10 @@ const db = process.env.DATABASE_URL.endsWith(".db") ?
             "rejectUnauthorized": false
          }
       },
-      "storage": process.env.DATABASE_URL
+      "storage": dbUrl
    }) :
    new Sequelize(
-      process.env.DATABASE_URL,
+      dbUrl,
       {
          "logging": console.log,
          "dialectOptions": {

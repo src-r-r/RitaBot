@@ -23,6 +23,10 @@ function sendMessage (data)
    return data.message.channel.send(richEmbedMessage).then((msg) =>
    {
 
+      // Push this onto message embedding for easy re-translation
+      console.log(`adding to embeds`)
+      data.message.embeds.push(msg);
+
       msg.delete({"timeout": time.long}).catch((err) => console.log(
          "Bot Message Deleted Error, command.send.js = ",
          err

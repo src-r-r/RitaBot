@@ -166,7 +166,8 @@ module.exports = function run (config, message, edited, deleted)
       client,
       "member": message.member,
       bot,
-      message
+      message,
+      newMessage: null,
    };
    if (data.message.channel.type !== "dm")
    {
@@ -184,6 +185,10 @@ module.exports = function run (config, message, edited, deleted)
 
       }
 
+   }
+
+   if (edited) {
+      data.newMessage = edited;
    }
 
    // ------------------
